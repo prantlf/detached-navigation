@@ -16,7 +16,7 @@ lintts=$(lintany) --ext=.ts --cache-location .tslintcache -c .tslintrc.yml dist 
 
 prepare ::
 	@echo "> $@"
-	@pnpm i ‑‑frozen‑lockfile --no-verify-store-integrity
+	@pnpm i --frozen-lockfile --no-verify-store-integrity
 
 all: dist/index.mjs dist/index.min.mjs dist/index.cjs.js \
 		dist/index.iife.js dist/index.iife.min.js \
