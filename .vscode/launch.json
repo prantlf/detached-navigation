@@ -1,0 +1,44 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "test detached-browser",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/test/detached-browser.js",
+      "runtimeArgs": [
+        "-r", "esm"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "test detach-window",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/test/detach-window.js",
+      "runtimeArgs": [
+        "-r", "esm"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "test detach-backbone",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/test/detach-backbone.js",
+      "runtimeArgs": [
+        "-r", "esm"
+      ]
+    }
+  ]
+}
