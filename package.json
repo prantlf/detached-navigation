@@ -1,6 +1,6 @@
 {
   "name": "detached-navigation",
-  "version": "0.0.1",
+  "version": "0.0.0-development",
   "description": "Provides mocked location and history objects detached from the browser window.",
   "author": "Ferdinand Prantl <prantlf@gmail.com> (http://prantlf.tk/)",
   "keywords": [
