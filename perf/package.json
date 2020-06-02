@@ -1,0 +1,8 @@
+{
+  "name": "detached-navigation-performance",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "benchmark": "2.1.4"
+  }
+}
