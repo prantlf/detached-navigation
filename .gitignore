@@ -1,0 +1,11 @@
+.DS_Store
+.nyc_output
+.eslintcache
+.tslintcache
+coverage
+dist/*.js
+dist/*.mjs
+dist/*.map
+node_modules
+npm-debug.log
+test/typings.js
