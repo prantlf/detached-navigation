@@ -16,7 +16,7 @@ script:
   - make coverage
 after_success:
   - pnpm i -g codecov semantic-release
-  - codecov
+  - codecov --disable=gcov
   - semantic-release
 branches:
   except:
