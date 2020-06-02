@@ -8,12 +8,26 @@
 [![devDependency Status](https://david-dm.org/prantlf/detached-navigation/dev-status.svg)](https://david-dm.org/prantlf/detached-navigation#info=devDependencies)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-Provides mocked location and history objects detached from the browser window. They can help if you need to navigate in your browser application (change the location and history), but you cannot change the window location. It can be useful for:
+Provides mocked location and history objects detached from the browser window. They can help if you need to navigate in your browser application (change the location and history), but you cannot afford changing the window location.
+
+Features:
+
+* Standard [`window`](#browser), [`location`](#location), [`history`](#history) and [`document`](#document) interfaces, no new API to learn.
+* Zero deviations from the native behavior, except for [`location.reload`](#location).
+* Applicable in both web browser and [Node.js].
+* Detaching (mocking) functions for `window` and `Backbone` provided.
+* All-in-one bundle and separate bundles for the three [API] functions.
+* Module integration with ES6, CJS and IIFE formats.
+* Small bundle sizes: all-in-one 11.3 kB, 5.1 kB, 1.6 kB, the [`Browser`] alone: 7.7 kB, 3.4 kB, 1.3 kB (normal, minified, gzipped).
+* TypeScript declarations included.
+* No dependencies.
+
+Usage scenarios:
 
 * Tests of SPA. If you verify navigation by tests running on the same page, you cannot cause the location changes to leave the testing page.
 * Embedded components. If you embed a component, which performs page navigations, in other page, you cannot let the embedded location changes disturb the parent window location.
 
-The [`Browser`] object can serve as an abstraction that you supply to your application or component for navigation purposes to swap the functionality of the global `window` object. (Not the rest of the `window` functionality, of course, which would need other abstractions.)
+The [`Browser`] object can serve as an abstraction that you supply to your application, or component for navigation purposes to swap the functionality of the global `window` object. (Not the rest of the `window` functionality, of course, which would need other abstractions.)
 
 You can continue using the standard and familiar [API] to navigate in both native or detached (mocked) modes.
 
