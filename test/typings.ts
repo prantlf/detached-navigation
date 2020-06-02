@@ -36,4 +36,4 @@ exports['test type declarations of detach-backbone'] = assert => {
   assert.equal(typeof undo, 'function', 'accepts declared parameters and returns a result')
 }
 
-if (require.main === module) { require('test').run(exports) }
+if (require.main === module) require('test').run(exports) // eslint-disable-line @typescript-eslint/no-var-requires
