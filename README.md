@@ -15,7 +15,7 @@ Features:
 * Standard [`window`](#browser), [`location`](#location), [`history`](#history) and [`document`](#document) interfaces, no new API to learn.
 * Zero deviations from the native behavior, except for [`location.reload`](#location).
 * Applicable in both web browser and [Node.js].
-* Detaching (mocking) functions for `window` and `Backbone` provided.
+* Detaching (mocking) functions for [`window`](#detachwindowhistory) and [`Backbone`](#detachbackbonehistory) provided.
 * All-in-one bundle and separate bundles for the three [API] functions.
 * Module integration with ES6, CJS and IIFE formats.
 * Small bundle sizes: all-in-one 11.3 kB, 5.1 kB, 1.6 kB, the [`Browser`] alone: 7.7 kB, 3.4 kB, 1.3 kB (normal, minified, gzipped).
