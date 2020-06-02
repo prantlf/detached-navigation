@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/detached-navigation)](https://www.npmjs.com/package/detached-navigation#top)
 [![Build Status](https://travis-ci.org/prantlf/detached-navigation.svg?branch=master)](https://travis-ci.org/prantlf/detached-navigation)
 [![codecov](https://codecov.io/gh/prantlf/detached-navigation/branch/master/graph/badge.svg)](https://codecov.io/gh/prantlf/detached-navigation)
-[![codebeat badge](https://codebeat.co/badges/9d85c898-df08-42fb-8ab9-407dc2ce2d22)](https://codebeat.co/projects/github-com-prantlf-nettime-master)
+[![codebeat badge](https://codebeat.co/badges/9d85c898-df08-42fb-8ab9-407dc2ce2d22)](https://codebeat.co/projects/github-com-prantlf-detached-navigation-master)
 [![Dependency Status](https://david-dm.org/prantlf/detached-navigation.svg)](https://david-dm.org/prantlf/detached-navigation)
 [![devDependency Status](https://david-dm.org/prantlf/detached-navigation/dev-status.svg)](https://david-dm.org/prantlf/detached-navigation#info=devDependencies)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
