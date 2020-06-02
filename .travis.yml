@@ -13,7 +13,7 @@ before_install:
 install:
   - make prepare
 script:
-  - make test
+  - make coverage
 after_success:
   - pnpm i -g codecov semantic-release
   - codecov
