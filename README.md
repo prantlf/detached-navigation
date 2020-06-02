@@ -100,7 +100,7 @@ const detachBackboneHistory = require('detached-navigation/dist/detach-backbone.
 If you write a plain HTML page, load the script with your chosen global exports from CDN or from the local filesystem:
 
 ```html
-<script src=https://unpkg.com/detached-navigation@0.0.2/dist/index.iife.min.js></script>
+<script src=https://unpkg.com/detached-navigation@0.0.3/dist/index.iife.min.js></script>
 <script>
   const {
     createDetachedBrowser, detachWindowHistory, detachBackboneHistory
@@ -125,7 +125,7 @@ Alternatively, you can import the script from CDN or from the local filesystem t
 <script type=module>
 import {
   createDetachedBrowser, detachWindowHistory, detachBackboneHistory
-} from 'https://unpkg.com/detached-navigation@0.0.2/dist/index.min.mjs'
+} from 'https://unpkg.com/detached-navigation@0.0.3/dist/index.min.mjs'
 
 import createDetachedBrowser from
   './node_modules/detached-navigation/dist/detached-browser.min.mjs'
