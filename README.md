@@ -37,7 +37,7 @@ reattachWindowHistory()
 
 ```js
 import { createDetachedBrowser, detachBackboneHistory } from 'detached-navigation'
-// Let a component navigate within Backbone.history detached from window.
+// Let a component navigate with Backbone.history detached from window.
 detachBackboneHistory(Backbone.history, createDetachedBrowser())
 // Start listening to the detached route navigation.
 Backbone.history.on('route', () => console.log(Backbone.history.fragment))
@@ -126,18 +126,20 @@ import detachBackboneHistory from
 
 The [`Browser`] object provided by this package implements a subset of the interface of the global `window` object, which takes part in page navigation. No other functionality. It covers the following scenarios:
 
-* Assigning to `browser.location` and its properties like `href` or `hash`, and reading their values.
-* Calling methods of `browser.location` like `assign` or `replace`.
-* Updating the location and history by `browser.history` methods `pushState` and `replaceState`.
-* Traversing the history by `browser.history` methods `back` `forward` and `go`.
-* Listening to `browser` events `popstate` and `hashchange`.
-* Accessing the page title by `browser.document.title`.
+* Assigning to [`browser.location`](#location) and its properties like `href` or `hash`, and reading their values.
+* Calling methods of [`browser.location`](#location) like `assign` or `replace`.
+* Modifying the history by [`browser.history`](#history) methods `pushState` and `replaceState`.
+* Traversing the history by [`browser.history`](#history) methods `back`, `forward` and `go`.
+* Listening to [`browser`](#browser) events `popstate` and `hashchange`.
+* Accessing the page title by [`browser.document.title`](#document).
 
 A [`Browser`] instance and the global `window` are meant to be replaceable without the application or a component noticing a difference. In regards of the navigation functionality, of course. There is one exception - the method `browser.location.reload`. It does not reload the page; it just dispatches the `popstate` event on the [`Browser`] instance.
 
 This package exports functions to create a [`Browser`] instance and to detach the navigation functionality from the original `window` or `Backbone` objects. Detaching methods return a function that can be used to re-attach the original location and history functionality. If you write an application from the scratch, you should perform the navigation using a [`Browser`] instance, which you initialize either to `window` or to a [`Browser`] instance depending on the target scenario.
 
 ### createDetachedBrowser
+
+Creates a new [`Browser`] instance. It can be used for a (mocked) navigation detached from the web page, or it can detach the native location ahd history in `window` or `Backbone`.
 
 ```js
 function createDetachedBrowser(
@@ -148,7 +150,11 @@ function createDetachedBrowser(
 ): Browser         // the object with the navigation interface like window
 ```
 
+If the `window` object is not supplied, the global `window` will be tried. If other parameters are missing, their values will be filled from the current `window` state. If no parameters are provided and no global `window` is available, the initial location will be set to `{ state: null, title: 'Untitled', url: 'detached://default' }`.
+
 ### detachWindowHistory
+
+Detaches the native navigation from the `window` object and replaces it by the navigation using the [`Browser`] instance. Returns a function to undo this operation.
 
 ```js
 function detachWindowHistory(
@@ -158,6 +164,8 @@ function detachWindowHistory(
 ```
 
 ### detachBackboneHistory
+
+Detaches the native routing from the `Backbone.history` object and replaces it by the navigation using the [`Browser`] instance. Returns a function to undo this operation.
 
 ```js
 function detachBackboneHistory(
@@ -257,13 +265,13 @@ Distribution and test files will be generated in `dist` and `test` directories. 
 make fix test
 ```
 
-When you check the test coverage after running the tests, you need to rebuild the output files, because the `esm` plugin caches them and would not allow `nyc` to supply the instrumented ones:
+When you check the test coverage after running the target `test`, you will need to rebuild the output files, because the `esm` plugin caches them and would not allow `nyc` to supply the instrumented ones:
 
 ```
 make clean coverage
 ```
 
-Before releasing a new version, a clean re-built and re-test should be done:
+Before releasing a new version, a clean re-built and re-test including code coverage should be performed:
 
 ```
 make new
