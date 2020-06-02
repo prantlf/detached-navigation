@@ -1,4 +1,4 @@
-import createDetachedBrowser from '../dist/detached-browser'
+import createDetachedBrowser from '../lib/detached-browser'
 
 exports['test detached-browser: provides defaults for the location and history'] = assert => {
   const browser = createDetachedBrowser()

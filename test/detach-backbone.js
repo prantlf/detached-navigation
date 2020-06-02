@@ -1,5 +1,5 @@
-import createDetachedBrowser from '../dist/detached-browser'
-import detachBackboneHistory from '../dist/detach-backbone'
+import createDetachedBrowser from '../lib/detached-browser'
+import detachBackboneHistory from '../lib/detach-backbone'
 
 exports['test detach-backbone: re-attaches the location and history'] = assert => {
   const Backbone = { history: {} }

@@ -1,5 +1,5 @@
-import createDetachedBrowser from '../dist/detached-browser'
-import detachWindowHistory from '../dist/detach-window'
+import createDetachedBrowser from '../lib/detached-browser'
+import detachWindowHistory from '../lib/detach-window'
 
 exports['test detach-window: transfers the location and history'] = assert => {
   const window = {
