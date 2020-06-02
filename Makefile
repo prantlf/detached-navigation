@@ -56,11 +56,13 @@ coverage :: all-test
 
 clean ::
 	@echo "> $@"
-	@rm -rf dist/*.js dist/*.mjs dist/*.map test/typings.js \
+	@rm -f dist/*.js dist/*.mjs dist/*.map test/typings.js
 
-clean-all :: clean
+clean-deps ::
 	@echo "> $@"
 	@rm -rf node_modules .nyc_output coverage .eslintcache .tslintcache
+
+clean-all :: clean clean-deps
 
 new :: clean fix coverage
 
