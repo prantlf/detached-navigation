@@ -1,1 +1,8 @@
-extends: standard
+extends:
+  - standard
+  - eslint:recommended
+rules:
+  consistent-return: [warn]
+  eqeqeq: [warn]
+  no-eq-null: [warn]
+  no-use-before-define: [warn, { variables: false }]

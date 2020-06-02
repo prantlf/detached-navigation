@@ -29,15 +29,15 @@ exports['test detach-window: detaches the location and history'] = assert => {
     location: {},
     history: {},
     document: {
-      get title () { gettitle = true },
+      get title () { return (gettitle = true) },
       set title (value) { settitle = true }
     },
     addEventListener (eventName, handler, options) { ++added },
     removeEventListener (eventName, handler, options) { ++removed },
     dispatchEvent (event) { ++dispatched },
-    get onpopstate () { getpopstate = true },
+    get onpopstate () { return (getpopstate = true) },
     set onpopstate (value) { setpopstate = true },
-    get onhashchange () { gethashchange = true },
+    get onhashchange () { return (gethashchange = true) },
     set onhashchange (value) { sethashchange = true }
   }
   detachWindowHistory(window, createDetachedBrowser())

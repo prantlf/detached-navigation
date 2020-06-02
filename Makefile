@@ -10,7 +10,7 @@ nodeopts=--format=cjs --platform=node
 browseropts=--format=iife $(sourcemaps)
 moduleopts=--format=esm $(sourcemaps)
 
-lintany=--cache
+lintany=--cache --max-warnings=0
 lintjs=$(lintany) --ext=.js --ignore-pattern=test/typings.js lib test
 lintts=$(lintany) --ext=.ts --cache-location .tslintcache -c .tslintrc.yml dist test
 

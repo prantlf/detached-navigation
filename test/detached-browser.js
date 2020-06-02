@@ -22,7 +22,7 @@ exports['test detached-browser: inherits the current location and history'] = as
 
 exports['test detached-browser: sets the current location and history explicitly'] = assert => {
   const state = {}
-  const browser = createDetachedBrowser(null, state, 'Test', 'custom://test')
+  const browser = createDetachedBrowser(undefined, state, 'Test', 'custom://test')
   assert.equal(browser.location.href, 'custom://test', 'initializes location')
   assert.equal(browser.history.state, state, 'initializes history state')
   assert.equal(browser.document.title, 'Test', 'initializes document title')
