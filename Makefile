@@ -1,3 +1,4 @@
+node=node -r esm
 npmbin=./node_modules/.bin
 esbuild=$(npmbin)/esbuild
 eslint=$(npmbin)/eslint
@@ -14,9 +15,8 @@ lintany=--cache --max-warnings=0
 lintjs=$(lintany) --ext=.js --ignore-pattern=test/typings.js lib test
 lintts=$(lintany) --ext=.ts --cache-location .tslintcache -c .tslintrc.yml dist test
 
-prepare ::
-	@echo "> $@"
-	@pnpm i --frozen-lockfile --no-verify-store-integrity
+coverfirst=-c -s
+coverother=-c -s --no-clean
 
 all: dist/index.mjs dist/index.min.mjs dist/index.cjs.js \
 		dist/index.iife.js dist/index.iife.min.js \
@@ -41,16 +41,16 @@ all-test :: all test/typings.js
 
 test :: all-test
 	@echo "> $@"
-	@node -r esm test/detached-browser
-	@node -r esm test/detach-window
-	@node -r esm test/detach-backbone
-	@node -r esm test/typings
+	@$(node) test/detached-browser
+	@$(node) test/detach-window
+	@$(node) test/detach-backbone
+	@$(node) test/typings
 
 coverage :: all-test
 	@echo "> $@"
-	@$(nyc) -c -s node -r esm test/detached-browser
-	@$(nyc) -c -s --no-clean node -r esm test/detach-window
-	@$(nyc) -c -s --no-clean node -r esm test/detach-backbone
+	@$(nyc) $(coverfirst) $(node) test/detached-browser
+	@$(nyc) $(coverother) $(node) test/detach-window
+	@$(nyc) $(coverother) $(node) test/detach-backbone
 	@$(nyc) report
 	@$(nyc) check-coverage
 
@@ -66,6 +66,10 @@ clean-all :: clean clean-deps
 
 new :: clean fix coverage
 
+prepare ::
+	@echo "> $@"
+	@pnpm i --frozen-lockfile --no-verify-store-integrity
+
 upgrade ::
 	@echo "> $@"
 	@cp package.json package.json.orig
@@ -73,28 +77,26 @@ upgrade ::
 	@diff -q package.json package.json.orig && rm package.json.orig \
 		|| (rm package.json.orig && pnpm i && make new)
 
-dist/index.mjs: lib/index.js lib/detached-browser.js lib/event-emitter.js \
-		lib/detach-window.js lib/detach-backbone.js
+indexdeps=lib/index.js lib/detached-browser.js lib/event-emitter.js \
+	lib/detach-window.js lib/detach-backbone.js
+
+dist/index.mjs: $(indexdeps)
 	@echo "> $@"
 	@$(esbuild) $(commonopts) $(moduleopts) $<
 
-dist/index.min.mjs: lib/index.js lib/detached-browser.js lib/event-emitter.js \
-		lib/detach-window.js lib/detach-backbone.js
+dist/index.min.mjs: $(indexdeps)
 	@echo "> $@"
 	@$(esbuild) $(commonopts) $(moduleopts) --minify $<
 
-dist/index.cjs.js: lib/index.js lib/detached-browser.js lib/event-emitter.js \
-		lib/detach-window.js lib/detach-backbone.js
+dist/index.cjs.js: $(indexdeps)
 	@echo "> $@"
 	@$(esbuild) $(commonopts) $(nodeopts) $<
 
-dist/index.iife.js: lib/index.js lib/detached-browser.js lib/event-emitter.js \
-		lib/detach-window.js lib/detach-backbone.js
+dist/index.iife.js: $(indexdeps)
 	@echo "> $@"
 	@$(esbuild) $(commonopts) $(browseropts) --name=detachedNavigation $<
 
-dist/index.iife.min.js: lib/index.js lib/detached-browser.js lib/event-emitter.js \
-		lib/detach-window.js lib/detach-backbone.js
+dist/index.iife.min.js: $(indexdeps)
 	@echo "> $@"
 	@$(esbuild) $(commonopts) $(browseropts) --minify --name=detachedNavigation $<
 
